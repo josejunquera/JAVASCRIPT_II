@@ -1,5 +1,5 @@
 {
-  "name": "ejercicio-digitalclock",
+  "name": "ejercicio-temperaturas",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "browser-sync start --server www --files www"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
