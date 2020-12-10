@@ -49,18 +49,22 @@ function generarTabla(datos) {
   for (let i = 0; i < datos.length; i++) {
     let style_min = getStyleTD(datos[i].min);
     let style_max = getStyleTD(datos[i].max);
+
     let tr = document.createElement('tr');
     let td1 = document.createElement('td');
     let td2 = document.createElement('td');
     let td3 = document.createElement('td');
+
     td1.textContent = datos[i].city;
     td2.textContent = datos[i].min;
     td2.classList.add(style_min);
     td3.textContent = datos[i].max;
     td3.classList.add(style_max);
+
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
+
     table.appendChild(tr);
   }
 }
@@ -82,6 +86,6 @@ generarTabla(temperaturas);
 //   return html;
 // }
 
-// // Asignamos a las filas a la tabla
+// // Asigno a las filas a la tabla
 // let tableHTML = generarTablaInnerHTML(temperaturas);
 // table.children[0].innerHTML += tableHTML;
