@@ -1,39 +1,53 @@
-"use strict";
+'use strict';
 
-// test = document.querySelector("input").value;
-// <input type="text" id="tweet" name="tweet">
-// test.value;
-// console.log(test);
-// ""
-// test.value
-// "kknasknas"
+const sendButton = document.querySelector('form button');
+const ul = document.querySelector('#tweets');
 
-//prevent default para que no se recargue la página al enviar
+function createTweet(content) {
+  const li = document.createElement('li');
+  const now = new Date();
+  li.innerHTML = `
+    <p>${content}</p>
+    <footer>
+      <time>
+        ${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}
+      </time>
+      <button class="action">Borrar</button>
+    </footer>`;
 
-let input = document.querySelector("input");
+  return li;
+}
 
-const button = document.querySelector(".action");
-const ul = document.querySelector("#tweets");
-
-button.addEventListener("click", (event) => {
+sendButton.addEventListener('click', (event) => {
   event.preventDefault();
-  const li = document.createElement("li");
-  li.innerHTML = `${document.querySelector("input").value}`;
-  ul.appendChild(li);
-  input.value = "";
+  const input = event.target.form.querySelector('#tweet');
+
+  console.log(event.target.form.querySelector('#tweet').value);
+  if (input.value.length === 0 || input.value.length > 250) {
+    window.alert('Esto no vale');
+    return;
+  }
+
+  ul.prepend(createTweet(input.value));
+  input.value = '';
 });
 
-button.addEventListener("click", (event) => {
-  event.preventDefault();
+ul.addEventListener('click', (event) => {
+  console.log(event.target);
+  if (event.target.matches('li button.action')) {
+    event.target.closest('li').remove();
+  }
 });
 
-// items.addEventListener("click", (event) => {
-//   console.log(event.target);
-//   console.log(event.currentTarget);
+//   let aux = [];
+//   aux.push(input.value);
+//   localStorage.setItem('tweets', JSON.stringify(aux));
+//   input.value = '';
+// //meter los nuevos lis en el local storage
 
-//   if (event.target.matches("button.delete")) {
-//     event.target.parentElement.remove();
-//   } else {
-//     console.log("NO BORRAMOS");
-//   }
-// });
+// //borrar los lis que se borran del localstorage
+
+//crear un data set para identificar tweets iguales, por ejemplo milisegundo en el que se crea
+
+// localStorage.setItem('dato', JSON.stringify(user));
+// const dato = localStorage.getItem('dato');
